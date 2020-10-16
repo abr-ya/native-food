@@ -17,15 +17,17 @@ const PlaceItem = ({ data }) => {
 const styles = StyleSheet.create({
   view: {
     margin: 10,
+    marginRight: 0,
   },
   name: {
     fontSize: 14,
     fontWeight: 'bold',
   },
   image: {
-    width: 240,
+    width: 180,
     height: 120,
     borderRadius: 5,
+    marginTop: -5,
   }
 });
 

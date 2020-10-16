@@ -8,6 +8,7 @@ const PlaceList = ({ title, places }) => {
       <Text style={styles.title} >{title} ({places.length})</Text>
       <FlatList 
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={places}
         keyExtractor={(place) => place.id}
         renderItem={({ item }) => (
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
+    marginHorizontal: 10,
   }
 });
 

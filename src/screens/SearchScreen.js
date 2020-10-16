@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, ScrollView, View, Text } from "react-native";
 import SearchBar from '../components/SearchBar';
 import PlaceList from '../components/PlaceList';
 import usePlaces from '../hooks/usePlaces';
@@ -17,24 +17,27 @@ const SearchScreen = () => {
   );
 
   return (
-    <View>
+    <View style={styles.view} >
       <SearchBar
         term={term}
         onChange={setTerm}
         onSubmit={() => searchRun(term)}
       />
       {!!errorMessage && <Text>{errorMessage}</Text>}
-      <Text>We have found: {places.length}</Text>
-      <PlaceList places={filterByPrice(places, "$")} title="Cost Effective" />
-      <PlaceList places={filterByPrice(places, "$$")} title="Bit Pricier" />
-      <PlaceList places={filterByPrice(places, "$$$")} title="Big Spender" />
+      {/* <Text>We have found: {places.length}</Text> */}
+      <ScrollView>
+        <PlaceList places={filterByPrice(places, "$")} title="Cost Effective" />
+        <PlaceList places={filterByPrice(places, "$$")} title="Bit Pricier" />
+        <PlaceList places={filterByPrice(places, "$$$")} title="Big Spender" />        
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  textStyle1: {
-    fontSize: 24,
+  view: {
+    flex: 1,
+    // marginLeft: 10,
   },
 });
 
