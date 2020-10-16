@@ -1,0 +1,32 @@
+import React from "react";
+import { Text, StyleSheet, View, Image } from "react-native";
+
+const PlaceItem = ({ data }) => {
+  return (
+    <View style={styles.view}>
+      <Image
+        style={styles.image}
+        source={{ uri: data.image_url }}
+      />
+      <Text style={styles.name} >{data.name}</Text>
+      <Text>{data.rating} stars, {data.review_count} reviews </Text>
+    </View>
+  ); 
+};
+
+const styles = StyleSheet.create({
+  view: {
+    margin: 10,
+  },
+  name: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  image: {
+    width: 240,
+    height: 120,
+    borderRadius: 5,
+  }
+});
+
+export default PlaceItem;

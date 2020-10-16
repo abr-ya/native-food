@@ -12,6 +12,10 @@ const SearchScreen = () => {
     console.log('error_change:', errorMessage);
   }, [errorMessage]);
 
+  const filterByPrice = (data, price) => (
+    data.filter(item => item.price === price)
+  );
+
   return (
     <View>
       <SearchBar
@@ -21,9 +25,9 @@ const SearchScreen = () => {
       />
       {!!errorMessage && <Text>{errorMessage}</Text>}
       <Text>We have found: {places.length}</Text>
-      <PlaceList title="Cost Effective" />
-      <PlaceList title="Bit Pricier" />
-      <PlaceList title="Big Spender" />
+      <PlaceList places={filterByPrice(places, "$")} title="Cost Effective" />
+      <PlaceList places={filterByPrice(places, "$$")} title="Bit Pricier" />
+      <PlaceList places={filterByPrice(places, "$$$")} title="Big Spender" />
     </View>
   );
 };
