@@ -16,7 +16,7 @@ export default () => {
         }
       });
       if (response.data.businesses.length > 0) {
-        console.log('demo:', response.data.businesses[0]);
+        // console.log('demo:', response.data.businesses[0]);
       }
       setPlaces(response.data.businesses);
       // setTerm('');

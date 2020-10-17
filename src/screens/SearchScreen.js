@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
 import SearchBar from '../components/SearchBar';
 import PlaceList from '../components/PlaceList';
-import usePlaces from '../hooks/usePlaces';
+import useSearch from '../hooks/useSearch';
 
 const SearchScreen = () => {
   const [term, setTerm] = useState('');
-  const [searchRun, places, errorMessage] = usePlaces();
+  const [searchRun, places, errorMessage] = useSearch();
 
   useEffect(() => {
     console.log('error_change:', errorMessage);

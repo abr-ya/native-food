@@ -1,14 +1,37 @@
 import React from "react";
-import { Text, StyleSheet, View, Image } from "react-native";
+import { Text, StyleSheet, View, Image, FlatList } from "react-native";
+import usePlace from '../hooks/usePlace';
 
-const ItemScreen = ({ data }) => {
+const ItemScreen = ({ navigation }) => {
+  const id = navigation.getParam('id');
+  const [place, loading, errorMessage] = usePlace(id);
+
+  console.log('place alias in Screen: ', place.alias);
+
+  if (loading) {
+    return (
+      <View style={styles.view}>
+         <Text style={styles.name}>... loading ...</Text>
+      </View>
+    ); 
+  }
+
   return (
     <View style={styles.view}>
-      {/* <Image
-        style={styles.image}
-        source={{ uri: data.image_url }}
-      /> */}
-      <Text style={styles.name} >One Item Screen</Text>
+      <Text style={styles.name}>{place.name}</Text>
+      {place.photos.length &&
+        <FlatList
+          data={place.photos}
+          keyExtractor={(photo) => photo}
+          renderItem={({ item }) => (
+            <Image
+              style={styles.image}
+              source={{ uri: item }}
+            />          
+          )}
+        />
+      }
+
     </View>
   ); 
 };
@@ -26,7 +49,7 @@ const styles = StyleSheet.create({
     width: 180,
     height: 120,
     borderRadius: 5,
-    marginTop: -5,
+    marginBottom: 5,
   }
 });
 

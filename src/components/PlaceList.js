@@ -4,9 +4,13 @@ import { withNavigation } from 'react-navigation';
 import PlaceItem from '../components/PlaceItem';
 
 const PlaceList = ({ title, places, navigation }) => {
-  const itemPressHandler = () => {
-    navigation.navigate('Item')
+  const itemPressHandler = (item) => {
+    navigation.navigate('Item', {
+      id: item.id,
+    })
   };
+
+  if (!places.length) return null;
 
   return (
     <View>
@@ -17,7 +21,7 @@ const PlaceList = ({ title, places, navigation }) => {
         data={places}
         keyExtractor={(place) => place.id}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={itemPressHandler}>
+          <TouchableOpacity onPress={() => itemPressHandler(item)}>
             <PlaceItem data={item} />
           </TouchableOpacity>
         )}
