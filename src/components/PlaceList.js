@@ -1,8 +1,13 @@
 import React from "react";
-import { Text, StyleSheet, View, FlatList } from "react-native";
+import { Text, StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
+import { withNavigation } from 'react-navigation';
 import PlaceItem from '../components/PlaceItem';
 
-const PlaceList = ({ title, places }) => {
+const PlaceList = ({ title, places, navigation }) => {
+  const itemPressHandler = () => {
+    navigation.navigate('Item')
+  };
+
   return (
     <View>
       <Text style={styles.title} >{title} ({places.length})</Text>
@@ -12,7 +17,9 @@ const PlaceList = ({ title, places }) => {
         data={places}
         keyExtractor={(place) => place.id}
         renderItem={({ item }) => (
-          <PlaceItem data={item} />
+          <TouchableOpacity onPress={itemPressHandler}>
+            <PlaceItem data={item} />
+          </TouchableOpacity>
         )}
       />
     </View>
@@ -27,4 +34,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PlaceList;
+export default withNavigation(PlaceList);

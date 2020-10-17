@@ -26,9 +26,18 @@ const SearchScreen = () => {
       {!!errorMessage && <Text>{errorMessage}</Text>}
       {/* <Text>We have found: {places.length}</Text> */}
       <ScrollView>
-        <PlaceList places={filterByPrice(places, "$")} title="Cost Effective" />
-        <PlaceList places={filterByPrice(places, "$$")} title="Bit Pricier" />
-        <PlaceList places={filterByPrice(places, "$$$")} title="Big Spender" />        
+        <PlaceList
+          places={filterByPrice(places, "$")}
+          title="Cost Effective"
+        />
+        <PlaceList
+          places={filterByPrice(places, "$$")}
+          title="Bit Pricier"
+        />
+        <PlaceList
+          places={filterByPrice(places, "$$$")}
+          title="Big Spender"
+        />
       </ScrollView>
     </View>
   );
